@@ -82,7 +82,7 @@ async def handle_message(client, message):
     # Aquí puedes agregar la lógica para procesar la URL y descargar el vídeo
     await message.reply(f"Recibí tu URL: {url}", disable_web_page_preview = True)
     message_status = await app.send_message(message.chat.id, "Descargando ...")
-    print(message_status)
+
     filename=""
     try:
         """Descarga el video usando yt-dlp y devuelve el nombre del archivo."""

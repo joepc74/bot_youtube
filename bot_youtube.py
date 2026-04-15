@@ -60,7 +60,7 @@ async def handle_message(client, message):
         }
         # si existe el archivo de cookies, lo añadimos a las opciones de yt-dlp para manejar sesiones autenticadas
         if os.path.exists("cookie.txt"):
-            ydl_opts['cookiefile'] = 'cookie.txt'
+            ydl_opts['cookies'] = 'cookie.txt'
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
         filename = ydl.prepare_filename(info)

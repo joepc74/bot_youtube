@@ -1,10 +1,14 @@
 from pyrogram import Client, filters, types, idle
 from dotenv import load_dotenv
-import os,sys, asyncio
-import yt_dlp
-import time
+import os,sys,yt_dlp
+from pathlib import Path
 
 rutas={}
+
+# Ruta completa del archivo actual
+full_path = Path(__file__).resolve()
+# Directorio donde se encuentra el script
+script_dir = full_path.parent
 
 last_update_time = 0
 
@@ -59,9 +63,9 @@ async def handle_message(client, message):
             'max_filesize': 1900 * 1024 * 1024, # Límite de 1900 MB
         }
         # si existe el archivo de cookies, lo añadimos a las opciones de yt-dlp para manejar sesiones autenticadas
-        if os.path.exists("cookie.txt"):
+        if os.path.exists(script_dir / "cookie.txt"):
             print("Archivo de cookies encontrado, se usará para la descarga.")
-            ydl_opts['cookiefile'] = 'cookie.txt'
+            ydl_opts['cookiefile'] = script_dir / "cookie.txt"
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
         filename = ydl.prepare_filename(info)

@@ -61,6 +61,7 @@ async def handle_message(client, message):
             'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',  # Preferimos MP4 para compatibilidad directa
             'outtmpl': 'video.%(ext)s',
             'max_filesize': 1900 * 1024 * 1024, # Límite de 1900 MB
+            'verbose': True,
         }
         # si existe el archivo de cookies, lo añadimos a las opciones de yt-dlp para manejar sesiones autenticadas
         if os.path.exists(script_dir / "cookies.txt"):
@@ -74,7 +75,7 @@ async def handle_message(client, message):
         await client.delete_messages(message.chat.id, message_status.id)
     except Exception as e:
         print(f"Error al descargar el vídeo: {e}")
-        await message.reply("❌ Ocurrió un error al descargar el vídeo. Asegúrate de que la URL es válida y el vídeo no supera los 1900 MB.")
+        await message.reply(f"❌ Ocurrió un error al descargar el vídeo. Asegúrate de que la URL es válida y el vídeo no supera los 1900 MB.\nError: {e}")
     finally:
         if os.path.exists(filename):
             os.remove(filename)

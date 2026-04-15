@@ -58,6 +58,9 @@ async def handle_message(client, message):
             'outtmpl': 'video.%(ext)s',
             'max_filesize': 1900 * 1024 * 1024, # Límite de 1900 MB
         }
+        # si existe el archivo de cookies, lo añadimos a las opciones de yt-dlp para manejar sesiones autenticadas
+        if os.path.exists("cookie.txt"):
+            ydl_opts['cookiefile'] = 'cookie.txt'
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             info = ydl.extract_info(url, download=True)
         filename = ydl.prepare_filename(info)

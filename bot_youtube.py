@@ -14,7 +14,7 @@ api_id = os.getenv('api_id')
 api_hash = os.getenv('api_hash')
 bot_token = os.getenv('bot_token')
 valid_users = os.getenv('valid_users').split(",")
-superuser = os.getenv('superuser')
+superuser,superuserid = os.getenv('superuser').split(",")
 
 app = Client("video_bot", api_id=api_id, api_hash=api_hash, bot_token=bot_token)
 
@@ -31,7 +31,7 @@ async def start(client, message):
 # Manejador de fin para parar el bot
 @app.on_message(filters.command("stop"))
 async def stop(client, message):
-    if str(message.from_user.id) != superuser:
+    if str(message.from_user.id) != superuserid:
         await message.reply("❌ No tienes permiso para realizar esta acción.")
         return
     await message.reply("👋 ¡Adiós! El bot se ha detenido.")

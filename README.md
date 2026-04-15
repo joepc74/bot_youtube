@@ -31,7 +31,7 @@ Este bot utiliza la biblioteca `yt-dlp` para descargar vídeos de YouTube y `Pyr
    - `api_id` y `api_hash`: Obténlos de [my.telegram.org](https://my.telegram.org).
    - `bot_token`: Crea un bot con [@BotFather](https://t.me/botfather) en Telegram.
    - `valid_users`: Lista de IDs de usuarios separados por comas que pueden usar el bot.
-   - `superuser`: ID del usuario que puede detener el bot.
+   - `superuser`: Nombre e ID del usuario, separados por coman, que puede detener el bot.
 
 ## Uso
 
